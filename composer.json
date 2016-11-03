@@ -1,0 +1,23 @@
+{
+    "name": "lupka/crudder",
+    "description": "Easy admin areas for Laravel models.",
+    "license": "MIT",
+    "type": "package",
+    "keywords": ["crudder", "crud", "laravel", "models"],
+    "authors": [
+        {
+            "name": "Alex Chalupka",
+            "email": "alex@alexchalupka.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lupka\\Crudder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lupka\\Crudder\\": "tests/"
+        }
+    }
+}
