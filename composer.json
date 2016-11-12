@@ -23,9 +23,13 @@
     "autoload-dev": {
         "classmap": [
             "tests/CrudderTestCase.php"
-        ]
+        ],
+        "psr-4": {
+            "": "tests/"
+        }
     },
     "require-dev": {
-        "orchestra/testbench": "~3.0"
+        "orchestra/testbench": "~3.0",
+        "mockery/mockery": "^0.9.5"
     }
 }
