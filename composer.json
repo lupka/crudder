@@ -21,8 +21,11 @@
         }
     },
     "autoload-dev": {
-        "psr-4": {
-            "Lupka\\Crudder\\": "tests/"
-        }
+        "classmap": [
+            "tests/CrudderTestCase.php"
+        ]
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0"
     }
 }
