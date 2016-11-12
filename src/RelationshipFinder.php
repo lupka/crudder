@@ -4,7 +4,7 @@
  * via: http://stackoverflow.com/questions/20334843/get-all-relationships-from-eloquent-model
  */
 
-namespace Crudder;
+namespace Lupka\Crudder;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Relations\Relation;

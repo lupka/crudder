@@ -2,8 +2,8 @@
 
 namespace Lupka\Crudder;
 
-use Fields\Factory as FieldFactory;
-use RelationshipFinder;
+use Lupka\Crudder\Fields\Factory as FieldFactory;
+use Lupka\Crudder\RelationshipFinder;
 
 use Illuminate\Support\Collection;
 
