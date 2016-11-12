@@ -16,15 +16,15 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
-                                    <th>Username</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($model->dashboardItems() as $item)
                                     <tr>
-                                        <td>{{ $item->{$model->getConfig('dashboard_name_field')} }}</td>
                                         <td>{{ $item->id }}</td>
+                                        <td>{{ $item->{$model->getConfig('dashboard_name_field')} }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
