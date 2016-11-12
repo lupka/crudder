@@ -8,6 +8,7 @@ class DashboardController extends BaseController
 {
     public function index()
     {
-        return 'dashboard';
+        $models = [];
+        return view('crudder::dashboard', ['models' => $models]);
     }
 }
