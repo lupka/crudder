@@ -33,6 +33,7 @@ class CrudderModel
     /**
      * Model retreival
      */
+
     // returns all models in collection
     public static function get()
     {
@@ -44,12 +45,7 @@ class CrudderModel
 
     public static function all()
     {
-        $configModels = config('crudder.models');
-        $models = [];
-        foreach($configModels as $className => $options){
-            $models[] = new self($className);
-        }
-        return collect($models);
+        return self::get();
     }
 
     public static function fromTableName($tableName)
@@ -71,7 +67,8 @@ class CrudderModel
         $defaultModelConfig = [
             'name' => $this->defaultName(),
             'name_plural' => $this->defaultNamePlural(),
-            'dashboard_name_field' => $this->defaultDashboardNameField()
+            'dashboard_name_field' => $this->defaultDashboardNameField(),
+            'dashboard' => true,
         ];
         $this->config = array_merge($defaultModelConfig, config('crudder.models.'.$this->className));
     }
