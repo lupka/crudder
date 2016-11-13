@@ -16,10 +16,11 @@ class CrudderDashboardTest extends CrudderTestCase
     public function crudder_dashboard_can_be_viewed()
     {
         // set config with basic models
-        app('config')->set('crudder.models', ['Models\ModelA' => []]);
+        app('config')->set('crudder.models', ['Models\ModelA' => [], 'Models\ModelB' => []]);
 
         $this->visit('/crudder/dashboard');
         $this->see('Model As');
+        $this->see('Model Bs');
     }
 
 }
