@@ -18,9 +18,13 @@ class CrudderDashboardTest extends CrudderTestCase
         // set config with basic models
         app('config')->set('crudder.models', ['Models\ModelA' => [], 'Models\ModelB' => []]);
 
+        // add one row to test display
+        Models\ModelA::create(['name' => 'Test Model A']);
+
         $this->visit('/crudder/dashboard');
         $this->see('Model As');
         $this->see('Model Bs');
+        $this->see('Test Model A');
     }
 
     /** @test */
