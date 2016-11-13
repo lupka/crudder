@@ -33,6 +33,15 @@ class CrudderModel
     /**
      * Model retreival
      */
+    // returns all models in collection
+    public static function get()
+    {
+        $configModels = collect(config('crudder.models'));
+        return $configModels->map(function($item, $key){
+            return new self($key);
+        });
+    }
+
     public static function all()
     {
         $configModels = config('crudder.models');
@@ -59,12 +68,12 @@ class CrudderModel
      */
     protected function parseModelConfig()
     {
-        $defaults = [
+        $defaultModelConfig = [
             'name' => $this->defaultName(),
             'name_plural' => $this->defaultNamePlural(),
             'dashboard_name_field' => $this->defaultDashboardNameField()
         ];
-        $this->config = array_merge($defaults, config('crudder.models.'.$this->className));
+        $this->config = array_merge($defaultModelConfig, config('crudder.models.'.$this->className));
     }
 
     public function getConfig($key)
