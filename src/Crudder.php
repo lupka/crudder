@@ -16,6 +16,7 @@ class Crudder
     public function routes()
     {
         $this->router->get('dashboard', ['as' => 'crudder_dashboard', 'uses' => '\Lupka\Crudder\Http\Controllers\DashboardController@index']);
+        $this->router->get('index/{tableName}', ['as' => 'crudder_index', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@index']);
         $this->router->get('create/{tableName}', ['as' => 'crudder_create', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@create']);
         $this->router->post('create/{tableName}', ['as' => 'crudder_create', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@store']);
         $this->router->get('edit/{tableName}/{id}', ['as' => 'crudder_edit', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@edit']);

@@ -9,9 +9,11 @@ use Lupka\Crudder\CrudderModel;
 
 class CrudController extends BaseController
 {
-    public function index()
+    public function index($tableName)
     {
-
+        $crudderModel = CrudderModel::fromTableName($tableName);
+        $rows = $crudderModel->query()->get();
+        return view('crudder::index', ['crudderModel' => $crudderModel, 'rows' => $rows]);
     }
 
     public function create($tableName)

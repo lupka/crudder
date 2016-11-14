@@ -186,11 +186,14 @@ class CrudderModel
     /**
      * URLs
      */
+    public function indexUrl()
+    {
+        return route('crudder_index', ['tableName' => $this->getTableName()]);
+    }
     public function createUrl()
     {
         return route('crudder_create', ['tableName' => $this->getTableName()]);
     }
-    
     public function editUrl($model)
     {
         return route('crudder_edit', ['tableName' => $this->getTableName(), 'id' => $model->id]);

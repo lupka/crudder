@@ -31,7 +31,7 @@
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <a href="#" class="btn btn-sm btn-secondary pull-xs-right">Manage &raquo;</a>
+                        <a href="{{ $model->indexUrl() }}" class="btn btn-sm btn-secondary pull-xs-right">Manage &raquo;</a>
                     </div>
                 </div>
             </div>
