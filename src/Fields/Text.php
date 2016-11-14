@@ -10,9 +10,9 @@ class Text extends Field
         return 'Text';
     }
 
-    public function renderFormField()
+    public function renderFormField($model = null)
     {
-        return view('crudder::fields.form.text', ['fieldName' => $this->fieldName, 'field' => $this]);
+        return view('crudder::fields.form.text', ['fieldName' => $this->fieldName, 'field' => $this, 'model' => $model]);
     }
 
 }

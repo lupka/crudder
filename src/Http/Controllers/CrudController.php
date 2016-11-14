@@ -38,12 +38,24 @@ class CrudController extends BaseController
     public function edit($tableName, $id)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
-
         $object = $crudderModel->loadModel($id);
 
-        dd($object);
+        return view('crudder::edit', ['crudderModel' => $crudderModel, 'object' => $object]);
+    }
 
-        //return view('crudder::create', ['crudderModel' => $crudderModel]);
+    public function update($tableName, $id, Request $request)
+    {
+        $crudderModel = CrudderModel::fromTableName($tableName);
+        $object = $crudderModel->loadModel($id);
+
+        foreach($crudderModel->fields as $field){
+            $value = $request->input($field->fieldName);
+            $object->{$field->fieldName} = $field->valueDefault($value);
+        }
+
+        $object->save();
+
+        return redirect($crudderModel->editUrl($object));
     }
 
 }
