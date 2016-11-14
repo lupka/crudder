@@ -2,17 +2,17 @@
 
 namespace Lupka\Crudder\Fields;
 
-class Boolean extends Field
+class Checkbox extends Field
 {
 
     public function typeName()
     {
-        return 'Boolean';
+        return 'Checkbox';
     }
 
-    public function renderFormField()
+    public function renderFormField($model = null)
     {
-        return view('crudder::fields.form.boolean', ['fieldName' => $this->fieldName, 'field' => $this]);
+        return view('crudder::fields.form.checkbox', ['fieldName' => $this->fieldName, 'field' => $this, 'model' => $model]);
     }
 
     public function valueDefault($value)

@@ -7,7 +7,7 @@ class Factory{
     protected $types = [
         // Basic field types
         'text' => Text::class,
-        'boolean' => Boolean::class,
+        'checkbox' => Checkbox::class,
 
         // Eloquent Relationships
         'belongsTo' => Relationships\BelongsTo::class,
