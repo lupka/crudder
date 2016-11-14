@@ -66,11 +66,13 @@ class CrudderModel
     {
         $defaultModelConfig = [
             'name' => $this->defaultName(),
-            'name_plural' => $this->defaultNamePlural(),
             'dashboard_name_field' => $this->defaultDashboardNameField(),
             'dashboard' => true,
         ];
         $this->config = array_merge($defaultModelConfig, config('crudder.models.'.$this->className));
+
+        // name_plural is separate so it can be derived from default OR manually set
+        if(!isset($this->config['name_plural'])) $this->config['name_plural'] = str_plural($this->config['name']);
     }
 
     public function getConfig($key)
@@ -81,11 +83,6 @@ class CrudderModel
     public function defaultName()
     {
         return ucwords(str_singular(str_replace('_', ' ', $this->tableName)));
-    }
-
-    public function defaultNamePlural()
-    {
-        return str_plural($this->defaultName());
     }
 
     public function defaultDashboardNameField()
