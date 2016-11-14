@@ -107,7 +107,9 @@ class CrudderModel
 
     public function addField($type, $className, $fieldName)
     {
-        $this->fields[] = $this->fieldFactory->dispenseField($type, $className, $fieldName);
+        $field = $this->fieldFactory->dispenseField($type, $className, $fieldName);
+        $this->fields[] = $field;
+        return $field;
     }
 
     public function getFieldSuggestion($fieldType)
