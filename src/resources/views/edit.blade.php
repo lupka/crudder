@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Add {{ $crudderModel->getConfig('name') }}</h1>
+    <h1>Edit {{ $crudderModel->getConfig('name') }}</h1>
 
     <form method="post">
 
