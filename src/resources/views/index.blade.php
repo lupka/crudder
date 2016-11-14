@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>{{ $crudderModel->getConfig('name') }}</h1>
+    <h1>{{ $crudderModel->getConfig('name_plural') }}</h1>
 
     <table class="table">
         <thead>
