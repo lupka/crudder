@@ -16,6 +16,7 @@ class CreateModelAsTable extends Migration
         Schema::create('model_as', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('another_text_field');
             $table->timestamps();
         });
     }

@@ -97,15 +97,11 @@ class CrudderModel
     {
         $fields = $this->getFieldsConfig();
         $this->fields = new Collection();
-        foreach($fields as $fieldName => $field){
-
-            // ignoring some defaults
-            // TODO: move this to config
-            if(in_array($fieldName, ['id','created_at','updated_at'])){
-                continue;
+        foreach($fields as $fieldName => $field)
+        {
+            if(!in_array($fieldName, config('crudder.models.'.$this->className.'.hidden_fields', ['id','created_at','updated_at']))){
+                $this->fields[] = $this->fieldFactory->dispenseField($this->getFieldSuggestion($field['fieldType']), $this->className, $fieldName);
             }
-
-            $this->fields[] = $this->fieldFactory->dispenseField($this->getFieldSuggestion($field['fieldType']), $this->className, $fieldName);
         }
     }
 
