@@ -10,9 +10,9 @@ class DashboardController extends BaseController
 {
     public function index()
     {
-        $models = CrudderModel::all()->filter(function ($value, $key) {
+        $crudderModels = CrudderModel::all()->filter(function ($value, $key) {
             return $value->config['dashboard'];
         });
-        return view('crudder::dashboard', ['models' => $models]);
+        return view('crudder::dashboard', ['crudderModels' => $crudderModels]);
     }
 }

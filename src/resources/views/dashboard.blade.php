@@ -4,13 +4,13 @@
 
     <div class="row">
 
-        @foreach($models as $model)
+        @foreach($crudderModels as $crudderModel)
 
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
-                      {{ $model->getConfig('name_plural') }}
-                      <a href="{{ $model->createUrl() }}" class="btn btn-sm btn-secondary pull-xs-right">New {{ $model->getConfig('name') }}</a>
+                      {{ $crudderModel->getConfig('name_plural') }}
+                      <a href="{{ $crudderModel->createUrl() }}" class="btn btn-sm btn-secondary pull-xs-right">New {{ $crudderModel->getConfig('name') }}</a>
                     </div>
                     <div class="card-block">
                         <table class="table">
@@ -18,20 +18,22 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($model->dashboardItems() as $item)
+                                @foreach($crudderModel->dashboardItems() as $model)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->{$model->getConfig('dashboard_name_field')} }}</td>
+                                        <td>{{ $model->id }}</td>
+                                        <td>{{ $model->{$crudderModel->getConfig('dashboard_name_field')} }}</td>
+                                        <td><a href="{{ $crudderModel->editUrl($model) }}">Edit</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <a href="{{ $model->indexUrl() }}" class="btn btn-sm btn-secondary pull-xs-right">Manage &raquo;</a>
+                        <a href="{{ $crudderModel->indexUrl() }}" class="btn btn-sm btn-secondary pull-xs-right">Manage &raquo;</a>
                     </div>
                 </div>
             </div>
