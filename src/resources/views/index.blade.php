@@ -12,10 +12,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($rows as $row)
+            @foreach($rows as $model)
                 <tr>
-                    <td>{{ $row->id }}</td>
-                    <td>{{ $row->{$crudderModel->getConfig('dashboard_name_field')} }}</td>
+                    <td>{{ $model->id }}</td>
+                    <td>{{ $model->{$crudderModel->getConfig('dashboard_name_field')} }}</td>
+                    <td><a href="{{ $crudderModel->editUrl($model) }}">Edit</a></td>
                 </tr>
             @endforeach
         </tbody>
