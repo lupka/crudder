@@ -198,5 +198,9 @@ class CrudderModel
     {
         return route('crudder_edit', ['tableName' => $this->getTableName(), 'id' => $model->id]);
     }
+    public function deleteUrl($model)
+    {
+        return route('crudder_delete', ['tableName' => $this->getTableName(), 'id' => $model->id]);
+    }
 
 }

@@ -21,6 +21,7 @@ class Crudder
         $this->router->post('create/{tableName}', ['as' => 'crudder_create', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@store']);
         $this->router->get('edit/{tableName}/{id}', ['as' => 'crudder_edit', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@edit']);
         $this->router->post('edit/{tableName}/{id}', ['as' => 'crudder_edit', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@update']);
+        $this->router->get('delete/{tableName}/{id}', ['as' => 'crudder_delete', 'uses' => '\Lupka\Crudder\Http\Controllers\CrudController@delete']);
     }
 
     // Field type management, is this the best way to do this??

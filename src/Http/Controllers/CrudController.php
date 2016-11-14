@@ -60,4 +60,12 @@ class CrudController extends BaseController
         return redirect($crudderModel->editUrl($object));
     }
 
+    public function delete($tableName, $id)
+    {
+        $crudderModel = CrudderModel::fromTableName($tableName);
+        $object = $crudderModel->loadModel($id);
+        $object->delete();
+        return redirect($crudderModel->indexUrl());
+    }
+
 }

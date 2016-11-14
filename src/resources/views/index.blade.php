@@ -17,7 +17,10 @@
                 <tr>
                     <td>{{ $model->id }}</td>
                     <td>{{ $model->{$crudderModel->getConfig('dashboard_name_field')} }}</td>
-                    <td><a href="{{ $crudderModel->editUrl($model) }}">Edit</a></td>
+                    <td>
+                        <a href="{{ $crudderModel->editUrl($model) }}">Edit</a>
+                        <a href="{{ $crudderModel->deleteUrl($model) }}">Delete</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
