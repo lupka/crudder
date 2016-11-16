@@ -2,7 +2,7 @@
 
 use Lupka\Crudder\CrudderModel;
 
-class CrudderConfigTest extends CrudderTestCase
+class CrudderModelConfigTest extends CrudderTestCase
 {
     public function setUp()
     {
@@ -14,7 +14,7 @@ class CrudderConfigTest extends CrudderTestCase
     }
 
     /** @test */
-    public function crudder_basic_config_test()
+    public function crudder_model_basic_config_test()
     {
         app('config')->set('crudder.models', ['Models\ModelA' => []]);
         $crudderModel = new CrudderModel('Models\ModelA');
@@ -28,7 +28,7 @@ class CrudderConfigTest extends CrudderTestCase
     }
 
     /** @test */
-    public function crudder_basic_config_inheritance_test()
+    public function crudder_model_basic_config_inheritance_test()
     {
         app('config')->set('crudder.models', ['Models\ModelA' => ['dashboard' => false, 'name' => 'Some Cool Model']]);
         $crudderModel = new CrudderModel('Models\ModelA');
