@@ -8,6 +8,7 @@ class Factory{
         // Basic field types
         'text' => Text::class,
         'checkbox' => Checkbox::class,
+        'textarea' => Textarea::class,
 
         // Eloquent Relationships
         'belongsTo' => Relationships\BelongsTo::class,

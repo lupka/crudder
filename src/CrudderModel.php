@@ -120,6 +120,9 @@ class CrudderModel
         elseif(in_array($fieldType,['boolean'])){
             return 'checkbox';
         }
+        elseif(in_array($fieldType,['text'])){
+            return 'textarea';
+        }
         else{
             return 'text';
         }
