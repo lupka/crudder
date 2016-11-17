@@ -17,6 +17,8 @@ class CreateModelAsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('another_text_field')->nullable();
+            $table->integer('select_option_field')->nullable();
+            $table->text('textarea_field')->nullable();
             $table->timestamps();
         });
     }

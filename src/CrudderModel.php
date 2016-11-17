@@ -12,7 +12,7 @@ class CrudderModel
     public $className;
     public $tableName;
     public $config;
-    public $fields = [];
+    public $fields;
     protected $fieldFactory;
     protected $relationshipFinder;
 
@@ -99,8 +99,10 @@ class CrudderModel
         $this->fields = new Collection();
         foreach($fields as $fieldName => $field)
         {
+            // get type from config, otherwise use suggested default
+            $type = config('crudder.models.'.$this->className.'.fields.'.$fieldName.'.type', $this->getFieldSuggestion($field['fieldType']));
             if(!in_array($fieldName, config('crudder.models.'.$this->className.'.hidden_fields', ['id','created_at','updated_at']))){
-                $this->addField($this->getFieldSuggestion($field['fieldType']), $this->className, $fieldName);
+                $this->addField($type, $this->className, $fieldName);
             }
         }
     }
