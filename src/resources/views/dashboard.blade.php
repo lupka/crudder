@@ -17,12 +17,14 @@
                             <thead>
                                 <tr>
                                     <th>{{ $crudderModel->dashboardListingField()->getConfig('label') }}</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($crudderModel->dashboardItems() as $model)
                                     <tr>
                                         <td>{{ $model->{$crudderModel->dashboardListingField()->fieldName} }}</td>
+                                        <td>@include('crudder::partials.model_table_actions')</td>
                                     </tr>
                                 @endforeach
                             </tbody>

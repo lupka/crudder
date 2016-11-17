@@ -18,8 +18,7 @@
                     <td>{{ $model->id }}</td>
                     <td>{{ $model->{$crudderModel->dashboardListingField()->fieldName} }}</td>
                     <td>
-                        <a href="{{ $crudderModel->editUrl($model) }}">Edit</a>
-                        <a href="{{ $crudderModel->deleteUrl($model) }}">Delete</a>
+                        @include('crudder::partials.model_table_actions')
                     </td>
                 </tr>
             @endforeach
