@@ -10,7 +10,7 @@
     <body>
 
         <nav class="navbar navbar-light bg-faded">
-            <a class="navbar-brand" href="{{ route('crudder_dashboard') }}">Crudder</a>
+            <a class="navbar-brand" href="{{ route('crudder_dashboard') }}">{{ config('crudder.navbar.title', 'Crudder') }}</a>
             <ul class="nav navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('crudder_dashboard') }}">Dashboard</a>

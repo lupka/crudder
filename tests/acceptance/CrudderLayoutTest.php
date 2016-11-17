@@ -24,4 +24,13 @@ class CrudderLayoutTest extends CrudderTestCase
         $this->see('<title>Admin</title>');
     }
 
+    /** @test */
+    public function crudder_navbar_title_test()
+    {
+        app('config')->set('crudder.navbar.title', 'A DIFFERENT TITLE');
+
+        $this->visit('/crudder/dashboard');
+        $this->see('A DIFFERENT TITLE');
+    }
+
 }
