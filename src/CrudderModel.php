@@ -59,6 +59,16 @@ class CrudderModel
         }
     }
 
+    public function dashboardListingField()
+    {
+        if($fieldName = $this->getConfig('dashboard_listing_field', false)){
+            return $this->fields->where('fieldName', $fieldName)->first();
+        }
+        else{
+            return $this->fields->first();
+        }
+    }
+
     /**
      * General Configuration (names, etc)
      */
@@ -66,7 +76,6 @@ class CrudderModel
     {
         $defaultModelConfig = [
             'name' => $this->defaultName(),
-            'dashboard_name_field' => $this->defaultDashboardNameField(),
             'dashboard' => true,
         ];
         $this->config = array_merge($defaultModelConfig, config('crudder.models.'.$this->className));
@@ -75,19 +84,14 @@ class CrudderModel
         if(!isset($this->config['name_plural'])) $this->config['name_plural'] = str_plural($this->config['name']);
     }
 
-    public function getConfig($key)
+    public function getConfig($key, $default = '')
     {
-        return isset($this->config[$key]) ? $this->config[$key] : '';
+        return isset($this->config[$key]) ? $this->config[$key] : $default;
     }
 
     public function defaultName()
     {
         return ucwords(str_singular(str_replace('_', ' ', $this->tableName)));
-    }
-
-    public function defaultDashboardNameField()
-    {
-        return $this->fields->first()->fieldName;
     }
 
     /**

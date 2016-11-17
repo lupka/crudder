@@ -19,10 +19,9 @@ class CrudderModelConfigTest extends CrudderTestCase
         app('config')->set('crudder.models', ['Models\ModelA' => []]);
         $crudderModel = new CrudderModel('Models\ModelA');
 
-        $this->assertEquals([
+        $this->assertArraySubset([
             'name' => 'Model A',
             'name_plural' => 'Model As',
-            'dashboard_name_field' => 'name',
             'dashboard' => true,
         ], $crudderModel->config);
     }
@@ -33,10 +32,9 @@ class CrudderModelConfigTest extends CrudderTestCase
         app('config')->set('crudder.models', ['Models\ModelA' => ['dashboard' => false, 'name' => 'Some Cool Model']]);
         $crudderModel = new CrudderModel('Models\ModelA');
 
-        $this->assertEquals([
+        $this->assertArraySubset([
             'name' => 'Some Cool Model',
             'name_plural' => 'Some Cool Models',
-            'dashboard_name_field' => 'name',
             'dashboard' => false,
         ], $crudderModel->config);
     }

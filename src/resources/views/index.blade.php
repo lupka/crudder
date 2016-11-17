@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>{{ $crudderModel->dashboardListingField()->getConfig('label') }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -16,7 +16,7 @@
             @foreach($rows as $model)
                 <tr>
                     <td>{{ $model->id }}</td>
-                    <td>{{ $model->{$crudderModel->getConfig('dashboard_name_field')} }}</td>
+                    <td>{{ $model->{$crudderModel->dashboardListingField()->fieldName} }}</td>
                     <td>
                         <a href="{{ $crudderModel->editUrl($model) }}">Edit</a>
                         <a href="{{ $crudderModel->deleteUrl($model) }}">Delete</a>

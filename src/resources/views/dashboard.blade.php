@@ -16,15 +16,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
+                                    <th>{{ $crudderModel->dashboardListingField()->getConfig('label') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($crudderModel->dashboardItems() as $model)
                                     <tr>
-                                        <td>{{ $model->id }}</td>
-                                        <td>{{ $model->{$crudderModel->getConfig('dashboard_name_field')} }}</td>
+                                        <td>{{ $model->{$crudderModel->dashboardListingField()->fieldName} }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

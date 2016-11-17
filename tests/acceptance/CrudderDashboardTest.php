@@ -38,4 +38,20 @@ class CrudderDashboardTest extends CrudderTestCase
         $this->dontSee('Model Bs');
     }
 
+    /** @test */
+    public function dashboard_label_field_can_be_changed()
+    {
+        // set config with basic models
+        app('config')->set('crudder.models', ['Models\ModelA' => ['dashboard_listing_field' => 'another_text_field']]);
+
+        // add one row to test display
+        Models\ModelA::create(['name' => 'Test Model A', 'another_text_field' => 'Alternate Name']);
+
+        $this->visit('/crudder/dashboard');
+        $this->see('Model As');
+        $this->dontSee('Test Model A');
+        $this->see('Alternate Name');
+        $this->see('Another Text Field'); // field label (from another_text_field)
+    }
+
 }
