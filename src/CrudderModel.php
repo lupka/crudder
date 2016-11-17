@@ -59,16 +59,6 @@ class CrudderModel
         }
     }
 
-    public function dashboardListingField()
-    {
-        if($fieldName = $this->getConfig('dashboard_listing_field', false)){
-            return $this->fields->where('fieldName', $fieldName)->first();
-        }
-        else{
-            return $this->fields->first();
-        }
-    }
-
     /**
      * General Configuration (names, etc)
      */
@@ -146,6 +136,24 @@ class CrudderModel
         return $config;
     }
 
+    public function dashboardListingField()
+    {
+        if($fieldName = $this->getConfig('dashboard_listing_field', false)){
+            return $this->fields->where('fieldName', $fieldName)->first();
+        }
+        else{
+            return $this->fields->first();
+        }
+    }
+
+    public function indexDisplayFields()
+    {
+        $customFields = $this->fields->whereIn('fieldName', $this->getConfig('index_display_fields'));
+        if($customFields->count() == 0){
+             return $this->fields->slice(0,2);
+        }
+        return $customFields;
+    }
 
     /**
      * Relationship Fields

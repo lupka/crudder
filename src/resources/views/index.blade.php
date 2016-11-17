@@ -7,16 +7,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>{{ $crudderModel->dashboardListingField()->getConfig('label') }}</th>
+                @foreach($crudderModel->indexDisplayFields() as $field)
+                    <th>{{ $field->getConfig('label') }}</th>
+                @endforeach
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach($rows as $model)
                 <tr>
-                    <td>{{ $model->id }}</td>
-                    <td>{{ $model->{$crudderModel->dashboardListingField()->fieldName} }}</td>
+                    @foreach($crudderModel->indexDisplayFields() as $field)
+                        <td>{{ $model->{$field->fieldName} }}</td>
+                    @endforeach
                     <td>
                         @include('crudder::partials.model_table_actions')
                     </td>

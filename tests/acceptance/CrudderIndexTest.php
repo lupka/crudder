@@ -33,4 +33,26 @@ class CrudderIndexTest extends CrudderTestCase
         $this->see('ENTRY_2');
     }
 
+    /** @test */
+    public function model_index_shows_correct_index_display_fields()
+    {
+        app('config')->set('crudder.models', ['Models\ModelA' => [
+            'index_display_fields' => ['name', 'textarea_field']
+        ]]);
+
+        $crudderModel = new CrudderModel('Models\ModelA');
+
+        $model = $crudderModel->dispenseModel();
+        $model->fill(['name' => 'ENTRY_1', 'another_text_field' => 'NOPE', 'textarea_field' => 'Some longer sentence.']);
+        $model->save();
+
+        $this->visit($crudderModel->indexUrl());
+        $this->see('ENTRY_1');
+        $this->see('Some longer sentence.');
+        $this->dontSee('NOPE');
+        $this->see('Name');
+        $this->see('Textarea Field');
+        $this->dontSee('Another Text Field');
+    }
+
 }
