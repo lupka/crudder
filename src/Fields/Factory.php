@@ -10,6 +10,7 @@ class Factory{
         'checkbox' => Checkbox::class,
         'textarea' => Textarea::class,
         'select' => Select::class,
+        'wysiwyg' => Wysiwyg::class,
 
         // Eloquent Relationships
         'belongsTo' => Relationships\BelongsTo::class,
