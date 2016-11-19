@@ -47,4 +47,12 @@ class Field
         return ucwords(str_singular(str_replace('_', ' ', $this->fieldName)));
     }
 
+    /**
+     * Script Registration
+     */
+    public function scripts()
+    {
+        return [];
+    }
+
 }

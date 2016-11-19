@@ -31,4 +31,24 @@ class CrudderEditTest extends CrudderTestCase
         $this->seeInDatabase('model_as', ['id' => $model->id, 'name' => 'NEW_MODEL_NAME']);
     }
 
+    /** @test */
+    public function registered_scripts_are_seen_on_edit_page()
+    {
+        app('config')->set('crudder.models', ['Models\ModelA' => [
+            'fields' => [
+                'textarea_field' => [
+                    'type' => 'wysiwyg'
+                ]
+            ]
+        ]]);
+        $crudderModel = new CrudderModel('Models\ModelA');
+
+        $model = $crudderModel->dispenseModel();
+        $model->fill(['name' => 'MODEL_NAME']);
+        $model->save();
+
+        $this->visit($crudderModel->editUrl($model));
+        $this->see('cdn.tinymce.com/4/tinymce.min.js');
+    }
+
 }

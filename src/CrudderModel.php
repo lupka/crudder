@@ -13,6 +13,7 @@ class CrudderModel
     public $tableName;
     public $config;
     public $fields;
+    public $scripts;
     protected $fieldFactory;
     protected $relationshipFinder;
 
@@ -28,6 +29,7 @@ class CrudderModel
         $this->generateFields();
         $this->generateRelationshipFields();
         $this->parseModelConfig();
+        $this->registerScripts();
     }
 
     /**
@@ -153,6 +155,17 @@ class CrudderModel
              return $this->fields->slice(0,2);
         }
         return $customFields;
+    }
+
+    /**
+     * Load scripts into array
+     */
+    public function registerScripts()
+    {
+        $this->scripts = [];
+        foreach($this->fields as $field){
+            $this->scripts = array_merge($this->scripts, $field->scripts());
+        }
     }
 
     /**

@@ -19,3 +19,13 @@
     </form>
 
 @endsection
+
+@section('footer_scripts')
+
+    @foreach($crudderModel->scripts as $script)
+
+        {!! $script !!}
+
+    @endforeach
+
+@endsection

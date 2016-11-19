@@ -15,4 +15,14 @@ class Wysiwyg extends Field
         return view('crudder::fields.form.wysiwyg', ['fieldName' => $this->fieldName, 'field' => $this, 'model' => $model]);
     }
 
+    /**
+     * Script Registration
+     */
+    public function scripts()
+    {
+        return [
+            'wysiwyg' => view('crudder::fields.scripts.wysiwyg'),
+        ];
+    }
+
 }
