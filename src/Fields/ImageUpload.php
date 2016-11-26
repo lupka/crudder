@@ -19,7 +19,7 @@ class ImageUpload extends FileUpload
 
     public function displayValue($model)
     {
-        return '<img src="'.$model->{$this->fieldName}.'" style="max-width:100px; max-height: 100px;">';
+        return '<img src="'.$this->getConfig('public_path').'/'.$model->{$this->fieldName}.'" style="max-width:100px; max-height: 100px;">';
     }
 
 }

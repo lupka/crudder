@@ -18,6 +18,7 @@ class ImageFieldTest extends CrudderTestCase
                 'file_upload_field' => [
                     'type' => 'image_upload',
                     'upload_directory' => 'public/uploads',
+                    'public_path' => '/storage',
                 ]
             ]
         ]);
@@ -66,4 +67,13 @@ class ImageFieldTest extends CrudderTestCase
         $this->seeInDatabase('model_bs', ['file_upload_field' => 'jpg.jpg']);
     }
 
+    /** @test */
+    public function image_field_display_value_outputs_img_tag()
+    {
+        $this->field->config['public_path'] = '/storage';
+        $model = $this->crudderModel->dispenseModel();
+        $model->test_image_field = 'jpg.jpg';
+
+        $this->assertContains('<img src="/storage/jpg.jpg"', $this->field->displayValue($model));
+    }
 }
