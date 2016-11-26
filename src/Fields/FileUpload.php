@@ -32,10 +32,8 @@ class FileUpload extends Field
      */
     public function processInputValue(Request $request, $key)
     {
-        // doing upload here and returning filename
-        $val = $request->$key->storeAs($this->getConfig('upload_directory', 'public/images'), $request->$key->getClientOriginalName());
-        dd($val);
-        return $key;
+        $filePath = $request->$key->storeAs($this->getConfig('upload_directory'), $request->$key->getClientOriginalName());
+        return basename($filePath); // not sure if this is the best way to do this but it'll work for now
     }
 
 }

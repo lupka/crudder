@@ -16,7 +16,8 @@ class FileUploadFieldTest extends CrudderTestCase
         app('config')->set('crudder.models.Models\\ModelB', [
             'fields' => [
                 'file_upload_field' => [
-                    'type' => 'file_upload'
+                    'type' => 'file_upload',
+                    'upload_directory' => 'public/uploads',
                 ]
             ]
         ]);
@@ -56,8 +57,7 @@ class FileUploadFieldTest extends CrudderTestCase
         $this->visit($crudderModel->createUrl())
              ->attach('tests/files/jpg.jpg', 'file_upload_field')
              ->press('Submit');
-
-        $this->assertFileExists('public/files/jpg.jpg');
+        $this->seeInDatabase('model_bs', ['file_upload_field' => 'jpg.jpg']);
     }
 
 }
