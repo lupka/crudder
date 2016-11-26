@@ -11,6 +11,7 @@ class Factory{
         'textarea' => Textarea::class,
         'select' => Select::class,
         'wysiwyg' => Wysiwyg::class,
+        'file_upload' => FileUpload::class,
 
         // Eloquent Relationships
         'belongsTo' => Relationships\BelongsTo::class,

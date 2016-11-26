@@ -2,6 +2,8 @@
 
 namespace Lupka\Crudder\Fields;
 
+use Illuminate\Http\Request;
+
 class Field
 {
     public $fieldName;
@@ -19,11 +21,6 @@ class Field
     public function typeName()
     {
         return 'No Name Given';
-    }
-
-    public function valueDefault($value)
-    {
-        return $value;
     }
 
     /**
@@ -48,9 +45,25 @@ class Field
     }
 
     /**
+     * Value output and filtering
+     */
+    public function processInputValue(Request $request, $key)
+    {
+        return $request->get($key);
+    }
+
+    /**
      * Script Registration
      */
     public function scripts()
+    {
+        return [];
+    }
+
+    /**
+     * Form Attribute Registration
+     */
+    public function formAttributes()
     {
         return [];
     }

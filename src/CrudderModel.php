@@ -14,6 +14,7 @@ class CrudderModel
     public $config;
     public $fields;
     public $scripts;
+    public $formAttributes;
     protected $fieldFactory;
     protected $relationshipFinder;
 
@@ -30,6 +31,7 @@ class CrudderModel
         $this->generateRelationshipFields();
         $this->parseModelConfig();
         $this->registerScripts();
+        $this->registerFormAttributes();
     }
 
     /**
@@ -166,6 +168,24 @@ class CrudderModel
         foreach($this->fields as $field){
             $this->scripts = array_merge($this->scripts, $field->scripts());
         }
+    }
+
+    /**
+     * Load form attributes into array
+     */
+    public function registerFormAttributes()
+    {
+        $this->formAttributes = [];
+        foreach($this->fields as $field){
+            $this->formAttributes = array_merge($this->formAttributes, $field->formAttributes());
+        }
+    }
+
+    public function formAttributeString()
+    {
+        return collect($this->formAttributes)->map(function($val, $key){
+            return $key.'="'.$val.'"';
+        })->implode(' ');
     }
 
     /**

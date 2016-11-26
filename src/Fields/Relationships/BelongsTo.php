@@ -26,13 +26,4 @@ class BelongsTo extends Field
         return view('crudder::fields.form.belongs_to', ['fieldName' => $this->fieldName, 'field' => $this, 'options' => $options]);
     }
 
-    public function valueDefault($value)
-    {
-        if($value === null){
-            return false;
-        }
-        else{
-            return $value;
-        }
-    }
 }

@@ -2,6 +2,8 @@
 
 namespace Lupka\Crudder\Fields;
 
+use Illuminate\Http\Request;
+
 class Checkbox extends Field
 {
 
@@ -15,13 +17,13 @@ class Checkbox extends Field
         return view('crudder::fields.form.checkbox', ['fieldName' => $this->fieldName, 'field' => $this, 'model' => $model]);
     }
 
-    public function valueDefault($value)
+    public function processInputValue(Request $request, $key)
     {
-        if($value === null){
+        if($request->get($key) === null){
             return false;
         }
         else{
-            return $value;
+            return $request->get($key);
         }
     }
 }

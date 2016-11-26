@@ -17,6 +17,7 @@ class CreateModelBsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->boolean('published');
+            $table->string('file_upload_field')->nullable();
             $table->timestamps();
         });
     }

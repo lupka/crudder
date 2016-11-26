@@ -10,7 +10,7 @@
 
         @foreach($crudderModel->fields as $field)
 
-            {!! $field->renderFormField($object) !!}
+            {!! $field->renderFormField($model) !!}
 
         @endforeach
 

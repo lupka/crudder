@@ -25,14 +25,13 @@ class CrudController extends BaseController
     public function store(Request $request, $tableName)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
-        $object = $crudderModel->dispenseModel();
+        $model = $crudderModel->dispenseModel();
 
         foreach($crudderModel->fields as $field){
-          $value = $request->input($field->fieldName);
-          $object->{$field->fieldName} = $field->valueDefault($value);
+            $model->{$field->fieldName} = $field->processInputValue($request, $field->fieldName);
         }
 
-        $object->save();
+        $model->save();
 
         return \Redirect::route('crudder_dashboard');
     }
@@ -40,31 +39,30 @@ class CrudController extends BaseController
     public function edit($tableName, $id)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
-        $object = $crudderModel->loadModel($id);
+        $model = $crudderModel->loadModel($id);
 
-        return view('crudder::edit', ['crudderModel' => $crudderModel, 'object' => $object]);
+        return view('crudder::edit', ['crudderModel' => $crudderModel, 'model' => $model]);
     }
 
     public function update($tableName, $id, Request $request)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
-        $object = $crudderModel->loadModel($id);
+        $model = $crudderModel->loadModel($id);
 
         foreach($crudderModel->fields as $field){
-            $value = $request->input($field->fieldName);
-            $object->{$field->fieldName} = $field->valueDefault($value);
+            $model->{$field->fieldName} = $field->processInputValue($request, $field->fieldName);
         }
 
-        $object->save();
+        $model->save();
 
-        return redirect($crudderModel->editUrl($object));
+        return redirect($crudderModel->editUrl($model));
     }
 
     public function delete($tableName, $id)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
-        $object = $crudderModel->loadModel($id);
-        $object->delete();
+        $model = $crudderModel->loadModel($id);
+        $model->delete();
         return redirect($crudderModel->indexUrl());
     }
 
