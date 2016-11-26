@@ -23,7 +23,7 @@
                             <tbody>
                                 @foreach($crudderModel->dashboardItems() as $model)
                                     <tr>
-                                        <td>{{ $crudderModel->dashboardListingField()->displayValue($model) }}</td>
+                                        <td>{!! $crudderModel->dashboardListingField()->displayValue($model) !!}</td>
                                         <td>@include('crudder::partials.model_table_actions')</td>
                                     </tr>
                                 @endforeach

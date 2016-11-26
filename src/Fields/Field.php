@@ -54,7 +54,7 @@ class Field
 
     public function displayValue($model)
     {
-        return $model->{$this->fieldName}; 
+        return e($model->{$this->fieldName}); 
     }
 
     /**

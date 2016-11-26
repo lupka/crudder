@@ -17,7 +17,7 @@
             @foreach($rows as $model)
                 <tr>
                     @foreach($crudderModel->indexDisplayFields() as $field)
-                        <td>{{ $field->displayValue($model) }}</td>
+                        <td>{!! $field->displayValue($model) !!}</td>
                     @endforeach
                     <td>
                         @include('crudder::partials.model_table_actions')
