@@ -12,6 +12,7 @@ class Factory{
         'select' => Select::class,
         'wysiwyg' => Wysiwyg::class,
         'file_upload' => FileUpload::class,
+        'image_upload' => ImageUpload::class,
 
         // Eloquent Relationships
         'belongsTo' => Relationships\BelongsTo::class,

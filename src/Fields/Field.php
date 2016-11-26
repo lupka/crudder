@@ -52,6 +52,11 @@ class Field
         return $request->get($key);
     }
 
+    public function displayValue($model)
+    {
+        return $model->{$this->fieldName}; 
+    }
+
     /**
      * Script Registration
      */
