@@ -4,7 +4,7 @@
 
     <h1>Add {{ $crudderModel->getConfig('name') }}</h1>
 
-    <form method="post">
+    <form method="post" {!! $crudderModel->formAttributeString() !!}>
 
         {{ csrf_field() }}
 

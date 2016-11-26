@@ -51,4 +51,24 @@ class CrudderEditTest extends CrudderTestCase
         $this->see('cdn.tinymce.com/4/tinymce.min.js');
     }
 
+    /** @test */
+    public function form_attributes_are_displayed_on_edit_page()
+    {
+        app('config')->set('crudder.models', ['Models\ModelA' => [
+            'fields' => [
+                'name' => [
+                    'type' => 'file_upload'
+                ]
+            ]
+        ]]);
+        $crudderModel = new CrudderModel('Models\ModelA');
+
+        $model = $crudderModel->dispenseModel();
+        $model->fill(['name' => 'MODEL_NAME']);
+        $model->save();
+
+        $this->visit($crudderModel->editUrl($model));
+        $this->see('enctype="multipart/form-data"');
+    }
+
 }
