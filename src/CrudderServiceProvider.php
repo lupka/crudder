@@ -14,7 +14,7 @@ class CrudderServiceProvider extends ServiceProvider
         // Publish Config
         $this->publishes([
             __DIR__.'/config/crudder.php' => config_path('crudder.php'),
-        ]);
+        ], 'config');
     }
 
     public function register()
