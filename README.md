@@ -44,6 +44,13 @@ Publish the Crudder config file by running the following command:
 php artisan vendor:publish --tag=config
 ```
 
+## Configuration
 
-# Setup Notes
-* publish config file
+### Basic Setup
+All you need to do to get started is enter the class name of the Eloquent Model you want to have an admin for in the `crudder.php` config file.
+```
+    'models' => [
+        'App\BlogPost' => []    
+    ]
+```    
+Crudder will use a basic form based on the field types in your database.
