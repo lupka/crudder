@@ -28,7 +28,7 @@ class CrudderModel
         $this->className = $className;
         $this->tableName = $this->getTableName();
         $this->generateFields();
-        $this->generateRelationshipFields();
+        //$this->generateRelationshipFields();
         $this->parseModelConfig();
         $this->registerScripts();
         $this->registerFormAttributes();
