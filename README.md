@@ -54,3 +54,6 @@ All you need to do to get started is enter the class name of the Eloquent Model 
     ]
 ```    
 Crudder will use a basic form based on the field types in your database.
+
+## Tips
+If you want to modify values programmatically before/after saving, I recommend using observers: https://laravel.com/docs/5.3/eloquent#observers
