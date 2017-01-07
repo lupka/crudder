@@ -28,6 +28,13 @@ class CrudderDashboardTest extends CrudderTestCase
     }
 
     /** @test */
+    public function root_url_redirects_to_dashboard()
+    {
+        $this->visit('/crudder');
+        $this->seePageIs('/crudder/dashboard');
+    }
+
+    /** @test */
     public function models_can_be_hidden_from_dashboard()
     {
         // set config with basic models
