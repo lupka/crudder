@@ -217,7 +217,7 @@ class CrudderModel
      }
      public function dashboardItems()
      {
-         return $this->query()->limit(5)->get();
+         return $this->query()->orderBy('created_at','DESC')->limit(5)->get();
      }
 
     /**
