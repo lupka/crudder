@@ -28,7 +28,9 @@ class CrudController extends BaseController
         $model = $crudderModel->dispenseModel();
 
         foreach($crudderModel->fields as $field){
-            $model->{$field->fieldName} = $field->processInputValue($request, $field->fieldName);
+            if ($field->hasValue($request)){
+                $model->{$field->fieldName} = $field->processInputValue($request, $field->fieldName);
+            }
         }
 
         $model->save();
@@ -50,7 +52,9 @@ class CrudController extends BaseController
         $model = $crudderModel->loadModel($id);
 
         foreach($crudderModel->fields as $field){
-            $model->{$field->fieldName} = $field->processInputValue($request, $field->fieldName);
+            if ($field->hasValue($request)){
+                $model->{$field->fieldName} = $field->processInputValue($request, $field->fieldName);
+            }
         }
 
         $model->save();

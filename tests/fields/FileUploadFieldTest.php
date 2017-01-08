@@ -60,4 +60,14 @@ class FileUploadFieldTest extends CrudderTestCase
         $this->seeInDatabase('model_bs', ['file_upload_field' => 'jpg.jpg']);
     }
 
+    /** @test */
+    public function file_upload_field_can_be_left_blank_on_edit()
+    {
+        $crudderModel = new CrudderModel('Models\ModelB');
+        $model = Models\ModelB::create(['title' => 'test', 'file_upload_field' => 'jpg.jpg', 'published' => false]);
+        $this->visit($crudderModel->editUrl($model))
+             ->press('Submit');
+        $this->seeInDatabase('model_bs', ['file_upload_field' => 'jpg.jpg']);
+    }
+
 }

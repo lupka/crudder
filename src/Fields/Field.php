@@ -54,7 +54,12 @@ class Field
 
     public function displayValue($model)
     {
-        return e($model->{$this->fieldName}); 
+        return e($model->{$this->fieldName});
+    }
+
+    public function hasValue(Request $request)
+    {
+        return $request->has($request->fieldName);
     }
 
     /**

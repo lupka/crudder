@@ -30,6 +30,12 @@ class FileUpload extends Field
     /**
      * Value output and filtering
      */
+     public function hasValue(Request $request)
+     {
+         // using hasFile() here instead of has()
+         return $request->hasFile($this->fieldName);
+     }
+
     public function processInputValue(Request $request, $key)
     {
         $filePath = $request->$key->storeAs($this->getConfig('upload_directory'), $request->$key->getClientOriginalName());
