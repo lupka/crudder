@@ -23,6 +23,7 @@ class CrudderCreateTest extends CrudderTestCase
         $this->type('MODEL_NAME', 'name');
         $this->press('Submit');
 
+        $this->see('Model A created!'); // flash alert
         $this->seeInDatabase('model_as', ['name' => 'MODEL_NAME']);
     }
 

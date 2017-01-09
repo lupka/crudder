@@ -28,6 +28,8 @@ class CrudderEditTest extends CrudderTestCase
         $this->type('NEW_MODEL_NAME', 'name');
         $this->press('Submit');
 
+        $this->see('Model A updated!'); // flash alert
+
         $this->seeInDatabase('model_as', ['id' => $model->id, 'name' => 'NEW_MODEL_NAME']);
     }
 

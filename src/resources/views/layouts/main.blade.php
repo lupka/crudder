@@ -19,6 +19,7 @@
         </nav>
 
         <div class="container mt-1">
+            @include('crudder::partials.alert')
             @yield('content')
         </div>
 

@@ -26,6 +26,7 @@ class CrudderDeleteTest extends CrudderTestCase
 
         $this->visit($crudderModel->deleteUrl($model));
         $this->seePageIs($crudderModel->indexUrl());
+        $this->see('Model A deleted.'); // flash alert
         $this->dontSeeInDatabase('model_as', ['id' => $model->id]);
     }
 

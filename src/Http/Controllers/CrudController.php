@@ -35,6 +35,8 @@ class CrudController extends BaseController
 
         $model->save();
 
+        $this->flash($crudderModel->getConfig('name').' created!', 'success');
+
         return \Redirect::route('crudder_dashboard');
     }
 
@@ -59,6 +61,8 @@ class CrudController extends BaseController
 
         $model->save();
 
+        $this->flash($crudderModel->getConfig('name').' updated!', 'success');
+
         return redirect($crudderModel->editUrl($model));
     }
 
@@ -67,7 +71,13 @@ class CrudController extends BaseController
         $crudderModel = CrudderModel::fromTableName($tableName);
         $model = $crudderModel->loadModel($id);
         $model->delete();
+        $this->flash($crudderModel->getConfig('name').' deleted.', 'info');
         return redirect($crudderModel->indexUrl());
     }
 
+    private function flash($message, $type = 'info')
+    {
+        session()->flash('alert.message', $message);
+        session()->flash('alert.type', $type);
+    }
 }
