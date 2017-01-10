@@ -22,7 +22,7 @@ use phpDocumentor\Reflection\DocBlock\Serializer as DocBlockSerializer;
 
 class RelationshipFinder
 {
-    protected $relationships = array();
+    protected $relationships = [];
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
@@ -31,15 +31,10 @@ class RelationshipFinder
     {
         $methods = get_class_methods($model);
         if ($methods) {
+
             foreach ($methods as $method) {
 
-                if (Str::startsWith($method, 'get') && Str::endsWith($method, 'Attribute') && $method !== 'getAttribute') {
-
-                } elseif (Str::startsWith($method, 'set') && Str::endsWith($method, 'Attribute') && $method !== 'setAttribute') {
-
-                } elseif (Str::startsWith($method, 'scope') && $method !== 'scopeQuery') {
-
-                } elseif (!method_exists('Illuminate\Database\Eloquent\Model', $method) && !Str::startsWith($method, 'get')) {
+                if (!method_exists('Illuminate\Database\Eloquent\Model', $method) && !Str::startsWith($method, 'get')) {
 
                     //Use reflection to inspect the code, based on Illuminate/Support/SerializableClosure.php
                     $reflection = new \ReflectionMethod($model, $method);
