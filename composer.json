@@ -1,6 +1,6 @@
 {
     "name": "lupka/crudder",
-    "description": "Easy admin areas for Laravel models.",
+    "description": "Dead simple admin panels for Laravel.",
     "license": "MIT",
     "type": "package",
     "keywords": ["crudder", "crud", "laravel", "models"],
