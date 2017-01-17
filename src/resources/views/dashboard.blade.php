@@ -10,7 +10,9 @@
                 <div class="card">
                     <div class="card-header">
                       {{ $crudderModel->getConfig('name_plural') }}
-                      <a href="{{ $crudderModel->createUrl() }}" class="btn btn-sm btn-secondary pull-xs-right">New {{ $crudderModel->getConfig('name') }}</a>
+                      @if($crudderModel->actionEnabled('create'))
+                        <a href="{{ $crudderModel->createUrl() }}" class="btn btn-sm btn-secondary pull-xs-right">New {{ $crudderModel->getConfig('name') }}</a>
+                      @endif
                     </div>
                     <div class="card-block">
                         <table class="table">
