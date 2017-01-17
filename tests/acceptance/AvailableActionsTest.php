@@ -91,6 +91,13 @@ class AvailableActionsTest extends CrudderTestCase
         $this->visit($crudderModel->indexUrl());
         $this->dontSee('Edit');
         $this->dontSee('Delete');
+
+        app('config')->set('crudder.models', ['Models\ModelA' => ['available_actions' => ['view']]]);
+        $crudderModel = new CrudderModel('Models\ModelA');
+        $this->visit($crudderModel->indexUrl());
+        $this->see('View');
+        $this->dontSee('Edit');
+        $this->dontSee('Delete');
     }
 
 }
