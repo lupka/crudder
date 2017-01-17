@@ -71,6 +71,7 @@ class CrudderModel
         $defaultModelConfig = [
             'name' => $this->defaultName(),
             'dashboard' => true,
+            'available_actions' => ['create','update','delete'],
         ];
         $this->config = array_merge($defaultModelConfig, config('crudder.models.'.$this->className));
 
@@ -86,6 +87,11 @@ class CrudderModel
     public function defaultName()
     {
         return ucwords(str_singular(str_replace('_', ' ', $this->tableName)));
+    }
+
+    public function actionEnabled($action)
+    {
+        return in_array($action, $this->getConfig('available_actions'));
     }
 
     /**

@@ -19,12 +19,14 @@ class CrudController extends BaseController
     public function create($tableName)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
+        if(!$this->permissionCheck($crudderModel, 'create')) return redirect($crudderModel->indexUrl());
         return view('crudder::create', ['crudderModel' => $crudderModel]);
     }
 
     public function store(Request $request, $tableName)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
+        if(!$this->permissionCheck($crudderModel, 'create')) return redirect($crudderModel->indexUrl());
         $model = $crudderModel->dispenseModel();
 
         foreach($crudderModel->fields as $field){
@@ -43,6 +45,7 @@ class CrudController extends BaseController
     public function edit($tableName, $id)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
+        if(!$this->permissionCheck($crudderModel, 'update')) return redirect($crudderModel->indexUrl());
         $model = $crudderModel->loadModel($id);
 
         return view('crudder::edit', ['crudderModel' => $crudderModel, 'model' => $model]);
@@ -51,6 +54,7 @@ class CrudController extends BaseController
     public function update($tableName, $id, Request $request)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
+        if(!$this->permissionCheck($crudderModel, 'update')) return redirect($crudderModel->indexUrl());
         $model = $crudderModel->loadModel($id);
 
         foreach($crudderModel->fields as $field){
@@ -69,6 +73,7 @@ class CrudController extends BaseController
     public function delete($tableName, $id)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
+        if(!$this->permissionCheck($crudderModel, 'delete')) return redirect($crudderModel->indexUrl());
         $model = $crudderModel->loadModel($id);
         $model->delete();
         $this->flash($crudderModel->getConfig('name').' deleted.', 'info');
@@ -79,5 +84,16 @@ class CrudController extends BaseController
     {
         session()->flash('alert.message', $message);
         session()->flash('alert.type', $type);
+    }
+
+    private function permissionCheck($crudderModel, $action)
+    {
+        if($crudderModel->actionEnabled($action)){
+            return true;
+        }
+        else{
+            $this->flash('You do not have permission to perform this action.', 'warning');
+            return false;
+        }
     }
 }
