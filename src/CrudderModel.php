@@ -250,6 +250,10 @@ class CrudderModel
     {
         return route('crudder_create', ['tableName' => $this->getTableName()]);
     }
+    public function viewUrl($model)
+    {
+        return route('crudder_view', ['tableName' => $this->getTableName(), 'id' => $model->id]);
+    }
     public function editUrl($model)
     {
         return route('crudder_edit', ['tableName' => $this->getTableName(), 'id' => $model->id]);

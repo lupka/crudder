@@ -16,6 +16,14 @@ class CrudController extends BaseController
         return view('crudder::index', ['crudderModel' => $crudderModel, 'rows' => $rows]);
     }
 
+    public function show($tableName, $id)
+    {
+        $crudderModel = CrudderModel::fromTableName($tableName);
+        $model = $crudderModel->loadModel($id);
+
+        return view('crudder::view', ['crudderModel' => $crudderModel, 'model' => $model]);
+    }
+
     public function create($tableName)
     {
         $crudderModel = CrudderModel::fromTableName($tableName);
